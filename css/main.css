@@ -1,0 +1,47 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Small Screen Breakpoint (Default) */
+
+html,body,h2,h1,div {
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+
+.top {
+	background-color: orange;
+	text-align: center;
+	padding-top: 2px !important;
+	padding-bottom: 2px !important;
+}
+
+
+.side {
+	background-color: gray;
+	padding-left: 20px;
+	height: 94vh;
+}
+
+#map {
+	height: 94vh;
+}
+
+ul {
+	list-style: none;
+}
+
+/* Medium Screen Breakpoint */
+
+@media only screen and (min-width:511px) {
+
+}
+
+/* Big screen */
+@media only screen and (min-width: 768px) {
+	
+}
