@@ -35,6 +35,10 @@ ul {
 	list-style: none;
 }
 
+li {
+	font-size: 20px;
+}
+
 /* Medium Screen Breakpoint */
 
 @media only screen and (min-width:511px) {
