@@ -1,33 +1,39 @@
-<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="css/bootstrap.min.css" rel=stylesheet>
-		<link href="css/main.css" rel=stylesheet>
-		<title>Los Altos Bar Map</title>
-	</head>
-	
-	<body>
-	
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="js/libs/bootstrap.min.js"></script>
-		<div class="row">
-			<div class="top col-sm-12"><h1>Los Altos Bar Map</h1></div>
-			<div class="side col-sm-3">
-				<div class="form-group col-sm-12">
-					<input type="text" class="form-control col-sm-12" placeholder="Search for...">
-					<!--<span class="input-group-btn">
-						<button class="btn btn-secondary" type="button">Search</button>
-					</span> -->
-				</div>
-				<h2>List</h2>
-				<ul id="list"></ul>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" src="js/lib/jquery-1.11.3.min.js"></script>
+		<script src="js/lib/bootstrap.min.js"></script>
+		<link href="css/style.css" rel="stylesheet">
+    <title>Neighborhood Map Project</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+			<div class="row">
+			<div class="col-xs-12 col-md-12" id="title-top">
+			<h1>Los Altos Bar Map</h1>
 			</div>
-			<div class="col-sm-9" id="map">Map</div>
-		</div>
-	<script src="js/map.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4IybujHmxZYo1Se6khifgcRBNVhascY8&v=3&callback=initMap"></script>
+				<div class="col-xs-12 col-md-2" id="left-menu">
+					<input id="input" type="search" placeholder="Search..." data-bind="textInput: userInput, event: {keyup: filterMarkers}">
+					<ul class="bar-list" data-bind="foreach: visiblePlaces">
+						<li class="bar-item" data-bind="text: name, click: $parent.openInfoWindow"></li>
+					</ul>
+				</div>
+				<div id="map" class="col-xs-12 col-md-10">
+				</div>
+			</div>
+    </div>
+
+
+	<script src="js/lib/knockout-3.3.0.js"></script>
+	<script type="text/javascript" src="js/map.js"></script>
+
+    <!-- Google Maps API -->
+		<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4IybujHmxZYo1Se6khifgcRBNVhascY8&v=3&callback=initMap"></script>
 	</body>
 </html>

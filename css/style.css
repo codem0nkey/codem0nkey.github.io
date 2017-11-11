@@ -1,0 +1,38 @@
+html, body {
+	margin:0;
+	padding:0;
+	height:100%;
+	display: flex;
+}
+
+.container-fluid {
+	min-width: 100vw !important;
+}
+
+#map {
+	height: 90%;
+}
+
+ul {
+	list-style-type: none;
+	padding-left: 10px;
+	font-size: 20px;
+}
+
+#title-top {
+	background-color: orange;
+	text-align: center;
+}
+
+#left-menu {
+	background-color: gray;
+	height: 90%;
+	text-align: left;
+}
+
+
+
+
+
+
+
