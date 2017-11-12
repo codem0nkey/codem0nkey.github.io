@@ -30,6 +30,16 @@ ul {
 	text-align: left;
 }
 
+#weather {
+	background-color: yellow;
+}
+
+@media(max-width:992px) {
+	#left-menu {
+		height: 200px;
+	}
+}
+
 
 
 

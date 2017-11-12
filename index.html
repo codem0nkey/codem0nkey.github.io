@@ -15,9 +15,13 @@
 <body>
     <div class="container-fluid">
 			<div class="row">
-			<div class="col-xs-12 col-md-12" id="title-top">
-			<h1>Los Altos Bar Map</h1>
-			</div>
+				<div class="col-xs-12 col-md-10" id="title-top">
+					<h1>Los Altos Bar Map</h1>
+				</div>
+				<div class="col-xs-12 col-md-2" id="weather">
+						<h4>Long Beach, CA</h4>
+						<p id="weatherinfo"><p>
+				</div>
 				<div class="col-xs-12 col-md-2" id="left-menu">
 					<input id="input" type="search" placeholder="Search..." data-bind="textInput: userInput, event: {keyup: filterMarkers}">
 					<ul class="bar-list" data-bind="foreach: visiblePlaces">
