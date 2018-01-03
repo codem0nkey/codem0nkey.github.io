@@ -1,19 +1,19 @@
 <html lang="en">
 <!DOCTYPE html>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<script type="text/javascript" src="js/lib/jquery-1.11.3.min.js"></script>
 		<script src="js/lib/bootstrap.min.js"></script>
 		<link href="css/style.css" rel="stylesheet">
-    <title>Neighborhood Map Project</title>
-</head>
+		<title>Neighborhood Map Project</title>
+	</head>
 
-<body>
-    <div class="container-fluid">
+	<body>
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-md-10" id="title-top">
 					<h1>Los Altos Bar Map</h1>
@@ -28,16 +28,15 @@
 						<li class="bar-item" data-bind="text: name, click: $parent.openInfoWindow"></li>
 					</ul>
 				</div>
-				<div id="map" class="col-xs-12 col-md-10">
-				</div>
+				<div id="map" class="col-xs-12 col-md-10"></div>
 			</div>
-    </div>
+		</div>
 
 
-	<script src="js/lib/knockout-3.3.0.js"></script>
-	<script type="text/javascript" src="js/map.js"></script>
+		<script src="js/lib/knockout-3.3.0.js"></script>
+		<script type="text/javascript" src="js/map.js"></script>
 
-    <!-- Google Maps API -->
+		<!-- Google Maps API -->
 		<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4IybujHmxZYo1Se6khifgcRBNVhascY8&v=3&callback=initMap" onerror="mapError()"></script>
 	</body>
 </html>
