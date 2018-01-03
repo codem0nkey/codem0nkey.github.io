@@ -21,6 +21,14 @@ var locationData = [{
 	}
 ];
 
+  mapError = function() {
+		document.getElementById('map').innerHTML = '<h3>Sorry, Google Maps is unable to load.</h3><p>Please check your internet connection.</p>';
+		document.getElementById('weather').style.display = 'none';
+		document.getElementById('left-menu').style.display = 'none';
+		document.getElementById('title-top').className = 'col-xs-12 col-md-12';
+	};
+
+
 var koViewModel = function() {
   "use strict";
   var self = this;
@@ -29,38 +37,40 @@ var koViewModel = function() {
   
   $.getJSON(apiCall,weatherCallBack);
   
+  
   function weatherCallBack(weatherdata){
 	var weatherinfo = weatherdata.current.temp_f + " / " + weatherdata.current.condition.text;
 	  $('#weatherinfo').append(weatherinfo);
 	  console.log(weatherinfo);
-  }
+  };
 
   var bounds = new google.maps.LatLngBounds();
 
-  // Construct the Google Map.
+  // Create new Google Map.
   self.googleMap = new google.maps.Map(document.getElementById('map'), {
   });
+  
 
-  // Build "Place" objects from locationData object.
+  // Iterate thru locationData and send to "Place" funtion.
   self.allPlaces = [];
   locationData.forEach(function(place) {
-    self.allPlaces.push(new Place(place));
+  self.allPlaces.push(new Place(place));
   });
 
-  // Place constructor function.
+  // Place function
   function Place(dataObject) {
     this.name = dataObject.name;
     this.latLng = dataObject.latLng;
   }
   
 
-  // Set infowindow
+  // define infowindow for markers with temp value.
   var infowindow = new google.maps.InfoWindow({
     content: "bar"
   });
 
   
-  // Build Markers via the Maps API and place them on the map.
+  // Create markers
   self.allPlaces.forEach(function(place) {
     var markerOptions = {
       map: self.googleMap,
@@ -83,7 +93,7 @@ var koViewModel = function() {
     google.maps.event.addListener(infowindow, 'closeclick', function(){
     });
 
-    //This function is triggered when a list item is clicked.
+    //function for clicked markers
     self.openInfoWindow = function() {
       google.maps.event.trigger(this.marker, 'click');
     };
@@ -91,30 +101,28 @@ var koViewModel = function() {
 
   self.googleMap.fitBounds(bounds);
 
-  // This array contains places that should show as markers on the map (based on user input).
+  // Only show visible markers
   self.visiblePlaces = ko.observableArray();
   
   
-  // Initialize map with all places.
+  // Put markers on the map.
   self.allPlaces.forEach(function(place) {
     self.visiblePlaces.push(place);
 	
   });
   
   
-  // This observable tracks user input in the search field.
+  // Obserable for search
   self.userInput = ko.observable('');
   
   
-  // This filter compares the userInput observable to the visisblePlaces array.
-  // Non-matching places are filtered off of the map.
+  // Filter out markers based on search
   self.filterMarkers = function() {
     var searchInput = self.userInput().toLowerCase();
     
     self.visiblePlaces.removeAll();
     
-    // This looks at the name of each place and then determines if the user
-    // input can be found within the place name.
+    // Matches thru list of bars based on user input (search functionality)
     self.allPlaces.forEach(function(place) {
       place.marker.setVisible(false);
       
