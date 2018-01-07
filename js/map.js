@@ -21,31 +21,30 @@ var locationData = [{
 	}
 ];
 
-  mapError = function() {
-		document.getElementById('map').innerHTML = '<h3>Sorry, Google Maps is unable to load.</h3><p>Please check your internet connection.</p>';
-		document.getElementById('weather').style.display = 'none';
-		document.getElementById('left-menu').style.display = 'none';
-		document.getElementById('title-top').className = 'col-xs-12 col-md-12';
-	};
+// If Google Map cannot load error
+mapError = function() {
+	document.getElementById('map').innerHTML = '<h3>Sorry, Google Maps is unable to load.</h3><p>Please check your internet connection.</p>';
+	document.getElementById('weatherdata').innerHTML ='<p>Unable to get weather</p>';
+};
 
 
 var koViewModel = function() {
   "use strict";
   var self = this;	
 	var apiCall = 'https://api.apixu.com/v1/current.json?key=d4d70ce13e1740688cb32830172308&q=Long+Beach,+CA';
-	var weatherinfo = "blah";
+	var weatherinfo = "n/a";
 	self.weatherdata = ko.observable(weatherinfo);
 	
-	$.getJSON(apiCall, function(json) { 
-		self.weatherinfo = json.weatherinfo;
-		json.weatherinfo = json.current.temp_f + " / " + json.current.condition.text;
-		console.log(json.weatherinfo);
+	// Weather API Call.
+	$.getJSON(apiCall)
+	.done(function(json) { 
+		weatherinfo = json.current.temp_f + " / " + json.current.condition.text;
+		self.weatherdata(weatherinfo);
 	})
 	.fail(function() {
-		self.weatherinfo = '<p>Unable to get weather</p>';
+		weatherinfo = "Unable to get weather";
+		self.weatherdata(weatherinfo);
 	});
-	
-	console.log(self.weatherdata() );
 	
   var bounds = new google.maps.LatLngBounds();
 
