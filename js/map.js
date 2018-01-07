@@ -31,19 +31,22 @@ var locationData = [{
 
 var koViewModel = function() {
   "use strict";
-  var self = this;
-  var weatherinfo;
-  var apiCall = 'https://api.apixu.com/v1/current.json?key=d4d70ce13e1740688cb32830172308&q=Long+Beach,+CA';
-  
-  $.getJSON(apiCall,weatherCallBack);
-  
-  
-  function weatherCallBack(weatherdata){
-	var weatherinfo = weatherdata.current.temp_f + " / " + weatherdata.current.condition.text;
-	  $('#weatherinfo').append(weatherinfo);
-	  console.log(weatherinfo);
-  };
-
+  var self = this;	
+	var apiCall = 'https://api.apixu.com/v1/current.json?key=d4d70ce13e1740688cb32830172308&q=Long+Beach,+CA';
+	var weatherinfo = "blah";
+	self.weatherdata = ko.observable(weatherinfo);
+	
+	$.getJSON(apiCall, function(json) { 
+		self.weatherinfo = json.weatherinfo;
+		json.weatherinfo = json.current.temp_f + " / " + json.current.condition.text;
+		console.log(json.weatherinfo);
+	})
+	.fail(function() {
+		self.weatherinfo = '<p>Unable to get weather</p>';
+	});
+	
+	console.log(self.weatherdata() );
+	
   var bounds = new google.maps.LatLngBounds();
 
   // Create new Google Map.
