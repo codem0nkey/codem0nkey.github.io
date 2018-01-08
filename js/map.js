@@ -1,23 +1,28 @@
 // Bar Locations
 var locationData = [{
 		'name': "Tracy's Bar & Grill",
-		'latLng': {lat:33.810862, lng: -118.123903}
+		'latLng': {lat:33.810862, lng: -118.123903},
+		'info': "It's Good"
 	},
 	{
 		'name': "Poor Richard's Cocktails",
-		'latLng': {lat:33.794987, lng:-118.107528}
+		'latLng': {lat:33.794987, lng:-118.107528},
+		'info': "Yummy"
 	},
 	{
 		'name': "Interlude",
-		'latLng': {lat:33.788887, lng:-118.133500}
+		'latLng': {lat:33.788887, lng:-118.133500},
+		'info': "Great Beer"
 	},
 	{
 		'name': "Annex",
-		'latLng': {lat:33.795937, lng:-118.142036}
+		'latLng': {lat:33.795937, lng:-118.142036},
+		'info': "Great Food"
 	},
 	{
 		'name': "Blondie's",
-		'latLng': {lat:33.796683, lng:-118.143140}
+		'latLng': {lat:33.796683, lng:-118.143140},
+		'info': "It's alright I guess"
 	}
 ];
 
@@ -45,6 +50,7 @@ var koViewModel = function() {
 		weatherinfo = "Unable to get weather";
 		self.weatherdata(weatherinfo);
 	});
+		
 	
   var bounds = new google.maps.LatLngBounds();
 
@@ -63,6 +69,7 @@ var koViewModel = function() {
   function Place(dataObject) {
     this.name = dataObject.name;
     this.latLng = dataObject.latLng;
+		this.info = dataObject.info;
   }
   
 
@@ -87,8 +94,35 @@ var koViewModel = function() {
       window.setTimeout(function() {
         place.marker.setAnimation(null);
       }, 1500);
+			
+		
+		// Get place data for markers from FourSquare API call
+		
+/*		
+		$.ajax({
+								url: "https://api.foursquare.com/v2/venues/search?client_id=KHP2W0SV0LGH1C2T0NCMEJMSYJTC00024X2BAYDOEXWW04QU&client_secret=KVYF5R1NTWDEK5OY1GPKBQTMVCLXCDFR03L3KOKOQ4DRIXFN&v=20180107&limit=1&near=" + place.lat + "," + place.lng + "&query=" + place.name,
+								cache: true,
+								dataType: 'json',
+								success: function(json) {
+								 $.ajax({
+										url: "https://api.foursquare.com/v2/venues/" + json.response.venues[0].id + "?client_id=KHP2W0SV0LGH1C2T0NCMEJMSYJTC00024X2BAYDOEXWW04QU&client_secret=KVYF5R1NTWDEK5OY1GPKBQTMVCLXCDFR03L3KOKOQ4DRIXFN&v=20180107",
+										cache: true,
+										dataType: 'json',
+										success: function(venueData) {
+											var venue = {
+												name : "",
+												hours : "",
+												url : "",
+												phone : "",
+												street : "",
+												city : "",
+												country : ""
+											};
+						});
+*/
+		
 	  infowindow.setContent(place.name);
-      infowindow.open(self.googleMap, place.marker);	
+    infowindow.open(self.googleMap, place.marker);	
     });
 
 
