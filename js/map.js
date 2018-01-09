@@ -32,6 +32,7 @@ mapError = function() {
 	document.getElementById('weatherdata').innerHTML ='<p>Unable to get weather</p>';
 };
 
+var address = "blah";
 
 var koViewModel = function() {
   "use strict";
@@ -94,40 +95,36 @@ var koViewModel = function() {
       window.setTimeout(function() {
         place.marker.setAnimation(null);
       }, 1500);
-			
 		
-		// Get place data for markers from FourSquare API call
 		
-/*		
-		$.ajax({
-								url: "https://api.foursquare.com/v2/venues/search?client_id=KHP2W0SV0LGH1C2T0NCMEJMSYJTC00024X2BAYDOEXWW04QU&client_secret=KVYF5R1NTWDEK5OY1GPKBQTMVCLXCDFR03L3KOKOQ4DRIXFN&v=20180107&limit=1&near=" + place.lat + "," + place.lng + "&query=" + place.name,
-								cache: true,
-								dataType: 'json',
-								success: function(json) {
-								 $.ajax({
-										url: "https://api.foursquare.com/v2/venues/" + json.response.venues[0].id + "?client_id=KHP2W0SV0LGH1C2T0NCMEJMSYJTC00024X2BAYDOEXWW04QU&client_secret=KVYF5R1NTWDEK5OY1GPKBQTMVCLXCDFR03L3KOKOQ4DRIXFN&v=20180107",
-										cache: true,
-										dataType: 'json',
-										success: function(venueData) {
-											var venue = {
-												name : "",
-												hours : "",
-												url : "",
-												phone : "",
-												street : "",
-												city : "",
-												country : ""
-											};
-						});
-*/
+			// Get place data for markers from FourSquare API call
+			var fsApi = 'https://api.foursquare.com/v2/venues/search?client_id=KHP2W0SV0LGH1C2T0NCMEJMSYJTC00024X2BAYDOEXWW04QU&client_secret=KVYF5R1NTWDEK5OY1GPKBQTMVCLXCDFR03L3KOKOQ4DRIXFN&v=20180107&limit=1&near="Long Beach, CA"&query=' + '"' + place.name + '"';
+				
+			$.getJSON(fsApi)
+			.done(function(fsData) {
+				var fsName = fsData.response.venues[0].name;
+				var fsAddress1 = fsData.response.venues[0].location.formattedAddress[0];
+				var fsAddress2 = fsData.response.venues[0].location.formattedAddress[1];
+				var phone = fsData.response.venues[0].contact.formattedPhone;
+				var barInfo = fsName + ": <br>" + fsAddress1  + "<br>" + fsAddress2 + "<br>Phone: " + phone;
+				
+				// set content for marker with FourSquare info
+				infowindow.setContent(barInfo);
+			})
+			.fail(function() {
+				var errorName = place.name;
+				var errorUnable = "Sorry, unable to get bar info.";
+				var errorMessage = place.name + "<br>" + errorUnable;
+				infowindow.setContent(errorMessage);
+			});
 		
-	  infowindow.setContent(place.name);
-    infowindow.open(self.googleMap, place.marker);	
-    });
+		
+		
+			infowindow.open(self.googleMap, place.marker);	
+		});
 
 
-    google.maps.event.addListener(infowindow, 'closeclick', function(){
-    });
+    google.maps.event.addListener(infowindow, 'closeclick', function(){});
 
     //function for clicked markers
     self.openInfoWindow = function() {

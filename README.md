@@ -1,7 +1,7 @@
 # Udacity Front-end Nanodegree Project: Neighborhood Map
 
 This project is a map of all the bars in the Los Altos are in Long Beach, CA 
-This uses the Google Maps API.  Markers are used to note each location on the map.  Filtering of map markers using a search box. Click on a marker to view the name of the bar (infoWindow).
+This uses the Google Maps API.  Markers are used to note each location on the map.  Filtering of map markers using a search box. Click on a marker to view the name, address and phone number of the bar (infoWindow).
 
 To start the app, open index.html in your browser. 
 
@@ -14,4 +14,5 @@ To start the app, open index.html in your browser.
 - JQuery
 - Google Maps API
 -  Apixu API (Weather API)
+- FourSquare API (for bar address and phone #)
 
