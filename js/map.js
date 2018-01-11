@@ -2,27 +2,22 @@
 var locationData = [{
 		'name': "Tracy's Bar & Grill",
 		'latLng': {lat:33.810862, lng: -118.123903},
-		'info': "It's Good"
 	},
 	{
 		'name': "Poor Richard's Cocktails",
 		'latLng': {lat:33.794987, lng:-118.107528},
-		'info': "Yummy"
 	},
 	{
 		'name': "Interlude",
 		'latLng': {lat:33.788887, lng:-118.133500},
-		'info': "Great Beer"
 	},
 	{
 		'name': "Annex",
 		'latLng': {lat:33.795937, lng:-118.142036},
-		'info': "Great Food"
 	},
 	{
 		'name': "Blondie's",
 		'latLng': {lat:33.796683, lng:-118.143140},
-		'info': "It's alright I guess"
 	}
 ];
 
@@ -76,7 +71,7 @@ var koViewModel = function() {
 
   // define infowindow for markers with temp value.
   var infowindow = new google.maps.InfoWindow({
-    content: "bar"
+    content: "Could not get info on location"
   });
 
   
@@ -106,7 +101,8 @@ var koViewModel = function() {
 				var fsAddress1 = fsData.response.venues[0].location.formattedAddress[0];
 				var fsAddress2 = fsData.response.venues[0].location.formattedAddress[1];
 				var phone = fsData.response.venues[0].contact.formattedPhone;
-				var barInfo = fsName + ": <br>" + fsAddress1  + "<br>" + fsAddress2 + "<br>Phone: " + phone;
+				var fsDisclaimer = "<img src='img/Powered-by-Foursquare-full-color-300.png' width='150'>";
+				var barInfo = "<p><strong>" + fsName + ": </strong><br>" + fsAddress1  + "<br>" + fsAddress2 + "<br>Phone: " + phone + "<br>" + fsDisclaimer + "</p>";
 				
 				// set content for marker with FourSquare info
 				infowindow.setContent(barInfo);
