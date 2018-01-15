@@ -26,6 +26,7 @@
 					<input id="input" type="search" placeholder="Search..." data-bind="textInput: userInput, event: {keyup: filterMarkers}">
 					<ul class="bar-list" data-bind="foreach: visiblePlaces">
 						<li class="bar-item" data-bind="text: name, click: $parent.openInfoWindow"></li>
+						<hr class="hr_space">
 					</ul>
 				</div>
 				<div id="map" class="col-xs-12 col-md-10"></div>

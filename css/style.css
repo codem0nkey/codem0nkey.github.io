@@ -19,6 +19,12 @@ ul {
 	font-size: 20px;
 }
 
+.hr_space {
+	padding:0px;
+	margin: 0px;
+	border-color: darkgray;
+}
+
 #title-top {
 	background-color: orange;
 	text-align: center;
@@ -38,11 +44,12 @@ ul {
 	#left-menu {
 		height: 200px;
 	}
+
+	.hr_space {
+		padding:0px;
+		margin: 0px;
+		border-color: black;
+		width: 250px;
+		border-color: darkgray;
+	}
 }
-
-
-
-
-
-
-
